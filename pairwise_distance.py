@@ -8,14 +8,14 @@ from scipy.sparse import csr_matrix, lil_matrix
 
 
 def batcher(x, batch_size=50):
-    check_array(x,  accept_sparse=True)
+    check_array(x,  accept_sparse=True, force_all_finite=False)
     len_x = x.shape[0]
     for i in range(0, len_x, batch_size):
         yield x[i:np.min([i + batch_size, len_x]), ]
 
 
 def check_XY(X, Y=None):
-    check_array(X)
+    check_array(X, accept_sparse=True, force_all_finite=False)
     if Y is None:
         Y = X
     else:
