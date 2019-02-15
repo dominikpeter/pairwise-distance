@@ -23,6 +23,19 @@ def check_XY(X, Y=None):
     return X, Y
 
 
+def softmax(x, axis=0):
+    """
+    softmax function takes an un-normalized vector,
+    and normalizes it into a probability distribution
+    """
+    exp_sum = np.sum(np.exp(x), axis=axis)
+    if axis == 1:
+        softmax = np.exp(x) / exp_sum[:, np.newaxis]
+    else:
+        softmax = np.exp(x) / exp_sum
+    return softmax
+
+
 class PairwiseDistance(BaseEstimator):
     def __init__(self,
                  metric="euclidean",
